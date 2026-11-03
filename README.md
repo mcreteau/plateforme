@@ -1,3 +1,4 @@
+ls
 <img src="assets/logo-carre.png" alt="Enseirb-Matmeca" width="110" align="right">
 
 # Plateforme IT320 — votre mini-CERT
@@ -26,7 +27,11 @@ Dans l'ordre, depuis le dossier `plateforme/` :
 cp .env.example .env
 # 1. Générer la clé API MISP AVANT le premier `up` (elle est injectée à l'initialisation de misp-core et lue par n8n) :
 python3 -c "import secrets;print(secrets.token_hex(20))"      # -> MISP_API_KEY dans .env
+<<<<<<< HEAD
 # 2. Compléter le reste de .env : OLLAMA_URL et OLLAMA_AUTH (donnés au tableau), OTX_API_KEY, ABUSECH_AUTH_KEY, mots de passe.
+=======
+	# 2. Compléter le reste de .env : OLLAMA_URL (donné au tableau), OTX_API_KEY, ABUSECH_AUTH_KEY, mots de passe.
+>>>>>>> d6d42ca (blah)
 # 3. Créer les dossiers écrits par les conteneurs et les rendre inscriptibles (Cowrie = uid 999, n8n = uid 1000) :
 sh tools/init-dirs.sh                 # équivalent : mkdir -p data/cowrie out && chmod -R 777 data/cowrie out
 # 4. Lancer :
