@@ -1,0 +1,30 @@
+title: SILEX-7 PowerShell encodé lancé depuis Office
+id: 7f8a6c2d-2f7d-4c8f-a5e1-1b9d6c3e4a72
+status: experimental
+description: Détecte l'exécution de PowerShell encodé et masqué depuis une application Office.
+references:
+  - https://attack.mitre.org/techniques/T1059/001/
+author: TomCaz
+date: 2026-11-10
+tags:
+  - attack.execution
+  - attack.t1059.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_ps:
+    Image|endswith: '\powershell.exe'
+    CommandLine|contains|all:
+      - '-enc'
+      - 'hidden'
+  selection_parent:
+    ParentImage|endswith:
+      - '\WINWORD.EXE'
+      - '\EXCEL.EXE'
+      - '\POWERPNT.EXE'
+      - '\OUTLOOK.EXE'
+  condition: selection_ps and selection_parent
+falsepositives:
+  - Macros d'entreprise légitimes lançant PowerShell encodé
+level: high
